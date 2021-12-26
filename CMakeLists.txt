@@ -15,8 +15,23 @@ CPMAddPackage(
 )
 add_compile_definitions(IMGUI_DISABLE_DEMO_WINDOWS) # imgui-sfml doesn't compile demo by default
 
+CPMAddPackage(
+  NAME EnTT
+  VERSION 3.1.1
+  GITHUB_REPOSITORY skypjack/entt
+  # EnTT's CMakeLists screws with configuration options
+  DOWNLOAD_ONLY True
+)
 
-add_executable(${PROJECT_NAME} src/main.cpp)
+
+
+add_executable(${PROJECT_NAME}
+				src/main.cpp
+				src/Simulation/Simulation.cpp
+				src/Simulation/Scene.cpp
+				src/Simulation/Factories.cpp
+				src/Simulation/Utils.cpp
+				)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ImGui-SFML::ImGui-SFML)
 
@@ -24,4 +39,7 @@ target_include_directories(
 	${PROJECT_NAME} PRIVATE
 	${imgui_SOURCE_DIR}
 	${imgui-sfml_SOURCE_DIR}
+	src/Simulation
+
+	EnTT
 )
