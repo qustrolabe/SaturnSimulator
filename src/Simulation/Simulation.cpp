@@ -2,7 +2,7 @@
 
 Simulation::Simulation()
     : window(sf::VideoMode::getDesktopMode(), "SaturnSimulator") {
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(framerate);
     ImGui::SFML::Init(window);
 
     camera.setSize((float)window.getSize().x * zoom_factor,
@@ -12,6 +12,10 @@ Simulation::Simulation()
 Simulation::~Simulation() { ImGui::SFML::Shutdown(); }
 
 void Simulation::start() {
+    // background
+    sf::RectangleShape field({10000, 10000});
+    field.setFillColor({100, 150, 100});
+
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -28,6 +32,10 @@ void Simulation::start() {
         }
 
         {
+            auto time = deltaClock.getElapsedTime().asSeconds();
+
+            ImGui::SetNextWindowPos(ImVec2(0, 0));
+
             ImGui::SFML::Update(window, deltaClock.restart());
 
             ImGui::Begin("Control Window");
@@ -106,9 +114,18 @@ void Simulation::start() {
             //     field.delete_entities();
             // }
 
+            // ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
+            // 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+
+            if (ImGui::SliderInt("framerate", &framerate, 0, 120,
+                                 "framerate = %3d")) {
+                window.setFramerateLimit(framerate);
+            }
+
+            ImGui::Text("deltaClock = %f", time);
+
             ImGui::End();
         }
-
 
         scene.update();
 
@@ -116,6 +133,7 @@ void Simulation::start() {
 
         window.clear(bg_color);
 
+        window.draw(field);
         window.draw(scene);
 
         camera.setCenter(camera_pos);

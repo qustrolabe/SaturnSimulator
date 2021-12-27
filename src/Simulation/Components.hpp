@@ -7,14 +7,26 @@ struct City {
 };
 
 struct Position {
-    float x;
-    float y;
+    float x = 0;
+    float y = 0;
 };
 
 struct Velocity {
-    float dx;
-    float dy;
+    float dx = 0;
+    float dy = 0;
 };
+
+struct Acceleration {
+    float ddx = 0;
+    float ddy = 0;
+};
+
+struct Friction {
+    float friction = 1.0;
+
+    operator double() { return friction; }
+};
+
 struct Radius {
     float radius;
 
@@ -22,8 +34,4 @@ struct Radius {
     operator float() const { return radius; }
 };
 
-
-
-struct Trader {
-
-};
+struct Trader {};

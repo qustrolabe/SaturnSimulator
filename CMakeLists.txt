@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13.0)
-project(SaturnSimulator VERSION 0.1)
+project(SaturnSimulator VERSION 0.0.3)
 
 set(CMAKE_CXX_STANDARD 17)
 

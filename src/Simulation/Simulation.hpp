@@ -17,6 +17,9 @@
 
 
 class Simulation {
+
+    int framerate = 60;
+
     sf::RenderWindow window;
     sf::Clock deltaClock;
 
