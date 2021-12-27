@@ -110,13 +110,6 @@ void Simulation::start() {
                                (float)window.getSize().y * zoom_factor);
             }
 
-            // if (ImGui::Button("Delete all entities")) {
-            //     field.delete_entities();
-            // }
-
-            // ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
-            // 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-
             if (ImGui::SliderInt("framerate", &framerate, 0, 120,
                                  "framerate = %3d")) {
                 window.setFramerateLimit(framerate);
