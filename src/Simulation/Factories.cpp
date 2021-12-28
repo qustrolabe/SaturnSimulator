@@ -3,9 +3,11 @@
 #include <entt/entity/registry.hpp>
 
 #include "Components.hpp"
+#include "Scene.hpp"
 #include "Utils.hpp"
 
-entt::entity makeCity(entt::registry &reg) {
+entt::entity CityFactory::Create() {
+    auto& reg = Scene::instance()->GetRegistry();
     const entt::entity e = reg.create();
     reg.emplace<City>(e);
     reg.emplace<Position>(e, RandNum(1000.f, 9000.f), RandNum(1000.f, 9000.f));
@@ -13,7 +15,8 @@ entt::entity makeCity(entt::registry &reg) {
     return e;
 }
 
-entt::entity makeTrader(entt::registry &reg) {
+entt::entity TraderFactory::Create() {
+    auto& reg = Scene::instance()->GetRegistry();
     const entt::entity e = reg.create();
     reg.emplace<Trader>(e);
     reg.emplace<Position>(e, RandNum(1000.f, 9000.f), RandNum(1000.f, 9000.f));
@@ -23,3 +26,8 @@ entt::entity makeTrader(entt::registry &reg) {
     reg.emplace<Radius>(e, 20.f);
     return e;
 }
+
+
+// entt::entity TreeFactory::Create() {
+//     auto& reg = Scene::instance()->GetRegistry();
+// }

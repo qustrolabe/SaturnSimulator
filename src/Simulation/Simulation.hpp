@@ -5,19 +5,14 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
-
-#include "imgui-SFML.h"
-#include "imgui.h"
-
 #include <random>
 #include <vector>
 
-
 #include "Scene.hpp"
-
+#include "imgui-SFML.h"
+#include "imgui.h"
 
 class Simulation {
-
     int framerate = 60;
 
     sf::RenderWindow window;
@@ -34,8 +29,8 @@ class Simulation {
     entt::registry registry;
 
    public:
-   	Simulation();
-    
+    Simulation();
+
     ~Simulation();
 
     void start();

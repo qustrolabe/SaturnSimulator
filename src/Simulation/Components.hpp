@@ -35,3 +35,13 @@ struct Radius {
 };
 
 struct Trader {};
+
+// makeTree -> makeLeaf & makeFruit
+
+// struct Trader {
+//     Trader(Reg) {
+//         Reg.emplace<Position>
+//     }
+// };
+
+// struct Tree {};

@@ -1,12 +1,13 @@
 #pragma once
 
-#include <Components.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
-#include <Utils.hpp>
 #include <entt/entt.hpp>
 #include <string>
+
+#include "Components.hpp"
+#include "Utils.hpp"
 
 class Scene : public sf::Drawable {
    public:
@@ -17,5 +18,10 @@ class Scene : public sf::Drawable {
     void update();
 
    private:
+    static Scene* sInstance;
     entt::registry m_Reg;
+   public:
+    entt::registry& GetRegistry() { return m_Reg; }
+    static Scene* instance() { return sInstance; }
+
 };
