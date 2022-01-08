@@ -17,13 +17,16 @@ add_compile_definitions(IMGUI_DISABLE_DEMO_WINDOWS) # imgui-sfml doesn't compile
 
 CPMAddPackage(
   NAME EnTT
-  VERSION 3.1.1
+  VERSION 3.9.0
   GITHUB_REPOSITORY skypjack/entt
   # EnTT's CMakeLists screws with configuration options
   DOWNLOAD_ONLY True
 )
 
-
+if(EnTT_ADDED)
+add_library(EnTT INTERFACE)
+target_include_directories(EnTT SYSTEM INTERFACE ${EnTT_SOURCE_DIR}/src)
+endif()
 
 add_executable(${PROJECT_NAME}
 				src/main.cpp
@@ -33,13 +36,11 @@ add_executable(${PROJECT_NAME}
 				src/Simulation/Utils.cpp
 				)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE ImGui-SFML::ImGui-SFML)
+target_link_libraries(${PROJECT_NAME} PRIVATE ImGui-SFML::ImGui-SFML EnTT)
 
 target_include_directories(
 	${PROJECT_NAME} PRIVATE
 	${imgui_SOURCE_DIR}
 	${imgui-sfml_SOURCE_DIR}
 	src/Simulation
-
-	EnTT SYSTEM INTERFACE ${EnTT_SOURCE_DIR}/src
 )
