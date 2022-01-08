@@ -41,5 +41,5 @@ target_include_directories(
 	${imgui-sfml_SOURCE_DIR}
 	src/Simulation
 
-	EnTT
+	EnTT SYSTEM INTERFACE ${EnTT_SOURCE_DIR}/src
 )
